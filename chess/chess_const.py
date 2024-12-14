@@ -1,0 +1,12 @@
+CHESS_BOARD_TOTAL_CELLS = 8
+
+EMPTY = '00'
+KING = 'K'
+QUEEN = 'Q'
+BISHOP = 'B'
+KNIGHT = 'N'
+ROOK = 'R'
+PAWN = 'W'
+
+BLACK = '['
+WHITE = ']'
