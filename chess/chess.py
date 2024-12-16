@@ -78,14 +78,8 @@ class Chess:
         self.set_cell('g1', WHITE+KNIGHT)
         self.set_cell('h1', WHITE+ROOK)
 
-
-    def select_piece(self, pos_str):
-        i, j = self.posstr_TO_num(pos_str)
-        return self.board[i][j]
-
-
     def piece_moves(self, pos_str, move_pos):
-        piece_type_str = self.select_piece(pos_str)   #pos_str 밸류값 불러오기. 
+        piece_type_str = self.cell_value(pos_str)   #pos_str 밸류값 불러오기. 
         piece_type = {'W' : self.pawn_moves,
                       'R' : self.rook_moves, 
                       'N' : self.knight_moves,
@@ -179,7 +173,7 @@ chess = Chess()
 
 chess.set_pieces()
 
-
+chess.set_cell('c3', BLACK+KING)
 chess.piece_moves('b2', 'c3')
 print()
 print()
