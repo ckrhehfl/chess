@@ -191,8 +191,45 @@ class Chess:
 
 
     def knight_moves(self,str_pos, color):
+        moves = []
+        row = str_pos[1]
+        column = str_pos[0]
+        cnt_row = str(int(row)+1)
+        
+        num1_neg_pos = [-1, 1]
+        num2_neg_pos = [-2, 2]
+        
+        for i in num2_neg_pos:
+            for j in num1_neg_pos:
+                cnt_column = chr(ord(column)+i)
+                cnt_row = str(int(row)+j)
 
-        pass
+                if self.is_valid_posstr(cnt_column+cnt_row) == True:
+                    if self.cell_value(cnt_column+cnt_row) == EMPTY:
+                        moves.append(cnt_column+cnt_row)
+                        continue
+                    elif not(color in self.cell_value(cnt_column+cnt_row)):
+                        moves.append(cnt_column+cnt_row)
+                        continue
+                else: break
+
+        for i in num2_neg_pos:
+            for j in num1_neg_pos:
+                cnt_column = chr(ord(column)+j)
+                cnt_row = str(int(row)+i)
+
+                if self.is_valid_posstr(cnt_column+cnt_row) == True:
+                    if self.cell_value(cnt_column+cnt_row) == EMPTY:
+                        moves.append(cnt_column+cnt_row)
+                        continue
+                    elif not(color in self.cell_value(cnt_column+cnt_row)):
+                        moves.append(cnt_column+cnt_row)
+                        continue
+                else: break
+
+        return moves
+
+
     def bishop_moves(self,str_pos, color):
         moves = []
         row = str_pos[1]
@@ -246,20 +283,12 @@ class Chess:
                     break
             else : break
 
-
-        print(moves)
         return moves
 
 
-
-
-
-        pass
     def queen_moves(self,str_pos, color):
-        moves = []
-        moves.extend(self.rook_moves(str_pos, color))
-        moves.extend(self.bishop_moves(str_pos, color))    
-        print(moves)
+        moves = self.rook_moves(str_pos, color)
+        moves.extend(self.bishop_moves(str_pos, color))
         return moves
     
     def king_moves(self,str_pos, color):
@@ -286,8 +315,8 @@ chess = Chess()
 
 chess.set_pieces()
 
-chess.set_cell('d4', BLACK+QUEEN)
-chess.piece_moves('d4', 'b2')
+chess.set_cell('d3', BLACK+KNIGHT)
+chess.piece_moves('d3', 'f1')
 print()
 print()
 chess.print_board()
